@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A04F6972F399F95A4E32E115 /* Pods_YapiKredi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0454CFB0033C53E66B0AF19 /* Pods_YapiKredi.framework */; };
 		C6097EFA1FDAE86000A27995 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6097EF91FDAE86000A27995 /* AppDelegate.swift */; };
 		C6097EFC1FDAE86000A27995 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6097EFB1FDAE86000A27995 /* ViewController.swift */; };
 		C6097EFF1FDAE86000A27995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6097EFD1FDAE86000A27995 /* Main.storyboard */; };
 		C6097F011FDAE86000A27995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6097F001FDAE86000A27995 /* Assets.xcassets */; };
 		C6097F041FDAE86000A27995 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6097F021FDAE86000A27995 /* LaunchScreen.storyboard */; };
+		C6097F0C1FDB147B00A27995 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6097F0B1FDB147B00A27995 /* ApiManager.swift */; };
+		C6097F0E1FDB1C0600A27995 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6097F0D1FDB1C0600A27995 /* GoogleService-Info.plist */; };
+		C6097F101FDB1CC600A27995 /* AppDelegateNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6097F0F1FDB1CC600A27995 /* AppDelegateNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8395EF8A1BEEF19368B9485C /* Pods-YapiKredi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapiKredi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapiKredi/Pods-YapiKredi.debug.xcconfig"; sourceTree = "<group>"; };
 		C6097EF61FDAE86000A27995 /* YapiKredi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapiKredi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6097EF91FDAE86000A27995 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6097EFB1FDAE86000A27995 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,12 @@
 		C6097F001FDAE86000A27995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6097F031FDAE86000A27995 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6097F051FDAE86000A27995 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6097F0B1FDB147B00A27995 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		C6097F0D1FDB1C0600A27995 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C6097F0F1FDB1CC600A27995 /* AppDelegateNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateNotification.swift; sourceTree = "<group>"; };
+		C6097F111FDB20F100A27995 /* YapiKredi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YapiKredi.entitlements; sourceTree = "<group>"; };
+		C87E8272B4833E0E5FC1BD61 /* Pods-YapiKredi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapiKredi.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapiKredi/Pods-YapiKredi.release.xcconfig"; sourceTree = "<group>"; };
+		E0454CFB0033C53E66B0AF19 /* Pods_YapiKredi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YapiKredi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +40,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04F6972F399F95A4E32E115 /* Pods_YapiKredi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		325B28B00FCFDA9EBBDBEC3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0454CFB0033C53E66B0AF19 /* Pods_YapiKredi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C6097EED1FDAE86000A27995 = {
 			isa = PBXGroup;
 			children = (
 				C6097EF81FDAE86000A27995 /* YapiKredi */,
 				C6097EF71FDAE86000A27995 /* Products */,
+				EFDB622C70ECB4CD8FC50139 /* Pods */,
+				325B28B00FCFDA9EBBDBEC3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +76,27 @@
 		C6097EF81FDAE86000A27995 /* YapiKredi */ = {
 			isa = PBXGroup;
 			children = (
+				C6097F111FDB20F100A27995 /* YapiKredi.entitlements */,
 				C6097EF91FDAE86000A27995 /* AppDelegate.swift */,
 				C6097EFB1FDAE86000A27995 /* ViewController.swift */,
 				C6097EFD1FDAE86000A27995 /* Main.storyboard */,
 				C6097F001FDAE86000A27995 /* Assets.xcassets */,
 				C6097F021FDAE86000A27995 /* LaunchScreen.storyboard */,
 				C6097F051FDAE86000A27995 /* Info.plist */,
+				C6097F0D1FDB1C0600A27995 /* GoogleService-Info.plist */,
+				C6097F0B1FDB147B00A27995 /* ApiManager.swift */,
+				C6097F0F1FDB1CC600A27995 /* AppDelegateNotification.swift */,
 			);
 			path = YapiKredi;
+			sourceTree = "<group>";
+		};
+		EFDB622C70ECB4CD8FC50139 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8395EF8A1BEEF19368B9485C /* Pods-YapiKredi.debug.xcconfig */,
+				C87E8272B4833E0E5FC1BD61 /* Pods-YapiKredi.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6097F081FDAE86000A27995 /* Build configuration list for PBXNativeTarget "YapiKredi" */;
 			buildPhases = (
+				A1D44348D7C7EC54327DA7AA /* [CP] Check Pods Manifest.lock */,
 				C6097EF21FDAE86000A27995 /* Sources */,
 				C6097EF31FDAE86000A27995 /* Frameworks */,
 				C6097EF41FDAE86000A27995 /* Resources */,
+				221945DA383F8AC22C62078A /* [CP] Embed Pods Frameworks */,
+				39B65342482F999C98FAFF9A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -97,6 +135,14 @@
 					C6097EF51FDAE86000A27995 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -124,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6097F041FDAE86000A27995 /* LaunchScreen.storyboard in Resources */,
+				C6097F0E1FDB1C0600A27995 /* GoogleService-Info.plist in Resources */,
 				C6097F011FDAE86000A27995 /* Assets.xcassets in Resources */,
 				C6097EFF1FDAE86000A27995 /* Main.storyboard in Resources */,
 			);
@@ -131,13 +178,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		221945DA383F8AC22C62078A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YapiKredi/Pods-YapiKredi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39B65342482F999C98FAFF9A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YapiKredi/Pods-YapiKredi-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1D44348D7C7EC54327DA7AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C6097EF21FDAE86000A27995 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C6097EFC1FDAE86000A27995 /* ViewController.swift in Sources */,
+				C6097F0C1FDB147B00A27995 /* ApiManager.swift in Sources */,
 				C6097EFA1FDAE86000A27995 /* AppDelegate.swift in Sources */,
+				C6097F101FDB1CC600A27995 /* AppDelegateNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,11 +369,14 @@
 		};
 		C6097F091FDAE86000A27995 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8395EF8A1BEEF19368B9485C /* Pods-YapiKredi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YapiKredi/YapiKredi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8L6CLSPA8;
 				INFOPLIST_FILE = YapiKredi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.by.YapiKredi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -287,11 +387,14 @@
 		};
 		C6097F0A1FDAE86000A27995 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C87E8272B4833E0E5FC1BD61 /* Pods-YapiKredi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = YapiKredi/YapiKredi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J8L6CLSPA8;
 				INFOPLIST_FILE = YapiKredi/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.by.YapiKredi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
