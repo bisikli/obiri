@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uO-hv-T2q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3uO-hv-T2q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +16,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="VCChat" customModule="YapiKredi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="476.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -24,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2456.8000000000002" y="99.400299850074973"/>
+            <point key="canvasLocation" x="3324" y="832"/>
         </scene>
         <!--Channel List-->
         <scene sceneID="Wje-9r-95R">
@@ -51,12 +52,53 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="cj9-a5-8RW"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowChannel" id="z9q-w4-6Kr"/>
+                        <segue destination="uXw-Um-TpK" kind="show" identifier="ShowChannel" id="t9f-lT-kKj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qub-eB-sMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1128.8" y="100.29985007496252"/>
+        </scene>
+        <!--Chat Container-->
+        <scene sceneID="yiU-Ws-ECn">
+            <objects>
+                <viewController id="uXw-Um-TpK" customClass="VCChatContainer" customModule="YapiKredi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XzI-SZ-MiH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xE-ci-1qd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="126.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLF-cf-GpB">
+                                <rect key="frame" x="0.0" y="190.5" width="375" height="476.5"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="embed" id="frM-kw-bLL"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qLF-cf-GpB" firstAttribute="top" secondItem="0xE-ci-1qd" secondAttribute="bottom" id="75P-vA-kg3"/>
+                            <constraint firstItem="WTP-4r-pbk" firstAttribute="trailing" secondItem="qLF-cf-GpB" secondAttribute="trailing" id="CH6-nm-JpZ"/>
+                            <constraint firstItem="qLF-cf-GpB" firstAttribute="leading" secondItem="WTP-4r-pbk" secondAttribute="leading" id="J2i-GS-YPb"/>
+                            <constraint firstItem="WTP-4r-pbk" firstAttribute="trailing" secondItem="0xE-ci-1qd" secondAttribute="trailing" id="PZh-Pk-oDp"/>
+                            <constraint firstItem="0xE-ci-1qd" firstAttribute="leading" secondItem="WTP-4r-pbk" secondAttribute="leading" id="TDW-ts-F6C"/>
+                            <constraint firstItem="0xE-ci-1qd" firstAttribute="top" secondItem="WTP-4r-pbk" secondAttribute="top" id="ddG-FY-8SQ"/>
+                            <constraint firstItem="qLF-cf-GpB" firstAttribute="height" secondItem="XzI-SZ-MiH" secondAttribute="height" multiplier="5:7" id="jET-fI-sme"/>
+                            <constraint firstItem="WTP-4r-pbk" firstAttribute="bottom" secondItem="qLF-cf-GpB" secondAttribute="bottom" id="y3n-um-hDY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WTP-4r-pbk"/>
+                    </view>
+                    <connections>
+                        <outlet property="container" destination="0xE-ci-1qd" id="rX5-rp-nHG"/>
+                        <outlet property="vcContainer" destination="qLF-cf-GpB" id="Xhg-gH-YVO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2dg-Nz-PHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2716" y="98.50074962518741"/>
         </scene>
         <!--VCFirebaseSignIn-->
         <scene sceneID="Deb-GA-l4u">

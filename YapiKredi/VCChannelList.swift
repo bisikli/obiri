@@ -141,11 +141,15 @@ class VCChannelList: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if let channel = sender as? Channel {
-            let chatVc = segue.destination as! VCChat
+            let chatVcContainer = segue.destination as! VCChatContainer
             
-            chatVc.senderDisplayName = senderDisplayName
-            chatVc.channel = channel
-            chatVc.channelRef = channelRef.child(channel.id)
+            chatVcContainer.senderDisplayName = senderDisplayName
+            chatVcContainer.channel           = channel
+            chatVcContainer.channelRef        = channelRef.child(channel.id)
+            
+            
+            
+            
         }
         
     }
