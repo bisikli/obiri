@@ -33,7 +33,7 @@ class ApiManager: NSObject {
             completion(responseObject, nil)
         
         }) { (operation, error) in
-            
+            print("Error post! \(error.localizedDescription)")
             completion(nil, error)
         }
         
@@ -83,7 +83,7 @@ class ApiManager: NSObject {
             completion(responseObject, nil)
             
         }) { (operation, error) in
-            
+            print("Error get! \(error.localizedDescription)")
             completion(nil, error)
         }
         

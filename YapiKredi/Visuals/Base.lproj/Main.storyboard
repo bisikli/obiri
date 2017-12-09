@@ -108,7 +108,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ucH-rA-ci3" firstAttribute="leading" secondItem="0xE-ci-1qd" secondAttribute="leading" constant="20" id="9JZ-rv-0Jh"/>
                                     <constraint firstItem="ucH-rA-ci3" firstAttribute="top" secondItem="0xE-ci-1qd" secondAttribute="top" constant="10" id="RkI-9G-HtE"/>

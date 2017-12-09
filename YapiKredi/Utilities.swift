@@ -8,8 +8,12 @@
 
 import FirebaseStorage
 
+import UIKit
 
-
+let laterColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
+let yesColor = UIColor(red: 69/255, green: 214/255, blue: 93/255, alpha: 1)
+let noColor = UIColor(red: 238/255, green: 76/255, blue: 108/255, alpha: 1)
+let bubleColor = UIColor(red: 231/255, green: 230/255, blue: 236/255, alpha: 1)
 
 let storageRef = Storage.storage().reference()
 

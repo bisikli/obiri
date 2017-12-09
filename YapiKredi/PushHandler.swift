@@ -11,7 +11,7 @@ import UserNotifications
 import JSQMessagesViewController
 
 public protocol PushHandlerDelegate : NSObjectProtocol {
-    func didReceiveNewObiMessage(message: JSQMessage, with params: String?)
+    func didReceiveNewObiMessage(message: JSQMessage, pushId: String, params: String?)
 }
 
 class PushHandler: NSObject {
@@ -24,7 +24,7 @@ class PushHandler: NSObject {
         
         let params = notif.request.content.userInfo
         
-        guard let isObiData = params["gcm.notification.obidata"] as? String else {
+        guard let obiKey = params["gcm.notification.obidata"] as? String else {
             return
         }
         
@@ -32,7 +32,7 @@ class PushHandler: NSObject {
             
             
             
-            addMessage(withId: id, name: name, text: message, params: params["gcm.notification.amount"] as? String)
+            addMessage(withId: id, name: name, text: message, pushId: obiKey, params: params["gcm.notification.amount"] as? String)
             
         }
         
@@ -50,11 +50,11 @@ class PushHandler: NSObject {
 //        }
 //    }
     
-    private func addMessage(withId id: String, name: String, text: String, params: String?) {
+    private func addMessage(withId id: String, name: String, text: String, pushId: String, params: String?) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
             
             if let uwDelegate = delegate {
-                uwDelegate.didReceiveNewObiMessage(message: message, with: params)
+                uwDelegate.didReceiveNewObiMessage(message: message, pushId: pushId, params: params)
             }
             
         }

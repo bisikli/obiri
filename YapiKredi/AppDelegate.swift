@@ -70,7 +70,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("FCM token: \(token)")
             NSLog("USER ID: \(userId)")
             
-            
+            ApiManager.manager.initServiceCall(userId: userId, token: token, completion: { (result, error) in
+                
+                if let data = result as? [String:Any], let success = data["success"] as? String {
+                    
+                }
+                
+            })
             
         }
         

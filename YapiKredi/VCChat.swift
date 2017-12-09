@@ -35,7 +35,7 @@ class VCChat: JSQMessagesViewController {
             title = channel?.name
         }
     }
-    var messages = [JSQMessage]()
+    var messages = [(jsq: JSQMessage,param: String?)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,7 @@ class VCChat: JSQMessagesViewController {
             "senderId": senderId!,
             "senderName": senderDisplayName!,
             "text": text!,
+            "messageId": UUID().uuidString
             ]
         
         itemRef.setValue(messageItem) // 3
@@ -87,9 +88,9 @@ class VCChat: JSQMessagesViewController {
             // 3
             let messageData = snapshot.value as! Dictionary<String, String>
             
-            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0 {
+            if let id = messageData["senderId"] as String!, let name = messageData["senderName"] as String!, let text = messageData["text"] as String!, text.characters.count > 0, let messageId = messageData["messageId"] {
                 // 4
-                self.addMessage(withId: id, name: name, text: text)
+                self.addMessage(withId: id, name: name, text: text, messageId: messageId, extra: messageData["extra"])
                 
                 // 5
                 self.finishReceivingMessage()
@@ -101,7 +102,7 @@ class VCChat: JSQMessagesViewController {
 
     // MARK: - CollectioView delegate
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        return messages[indexPath.item]
+        return messages[indexPath.item].jsq
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -109,7 +110,7 @@ class VCChat: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = messages[indexPath.item] // 1
+        let message = messages[indexPath.item].jsq // 1
         
         if message.senderId == senderId { // 2
             return outgoingBubbleImageView
@@ -124,7 +125,7 @@ class VCChat: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString!
     {
-        let message = messages[indexPath.item]
+        let message = messages[indexPath.item].jsq
         
         if message.senderId == senderId {
             return nil
@@ -142,7 +143,7 @@ class VCChat: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat
     {
         //return 17.0
-        let message = messages[indexPath.item]
+        let message = messages[indexPath.item].jsq
         
         if message.senderId == senderId {
             return 0.0
@@ -155,7 +156,7 @@ class VCChat: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
-        let message = messages[indexPath.item]
+        let message = messages[indexPath.item].jsq
         
         cell.isUserInteractionEnabled = true
         if message.senderId == obiID {
@@ -171,7 +172,7 @@ class VCChat: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let placeHolderImage = #imageLiteral(resourceName: "cemcuk")
         var avatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: placeHolderImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
-        let avatarOwner = messages[indexPath.row].senderId!
+        let avatarOwner = messages[indexPath.row].jsq.senderId!
         
         if let avatar = ImageCache[avatarOwner] {
             avatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: avatar, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
@@ -211,31 +212,13 @@ class VCChat: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapCellAt indexPath: IndexPath!, touchLocation: CGPoint) {
         super.collectionView(collectionView, didTapCellAt: indexPath, touchLocation: touchLocation)
         
-        let message = messages[indexPath.item]
+        let message = messages[indexPath.item].jsq
         
-        if message.senderId == obiID, let obiData = lastReceivedObiData {
+        if message.senderId == obiID, let obiData = messages[indexPath.item].param {
             NSLog("Pressed on OBI MESSAGE!!")
             
             
-            NSLog("Sender ID: \(senderId)")
-            ApiManager.manager.sendMoneyToPoolServiceCall(userId: senderId!, amount: obiData, completion: { (result, error) in
-                
-                if let data = result as? [String:Any], let success = data["success"] as? String {
-                    
-                    self.lastReceivedObiData = nil
-                    
-                    DispatchQueue.main.async {
-                        //self.havuzBalance.text = balance
-                    }
-                    
-                } else {
-                    
-                    
-                    
-                }
-                
-                
-            })
+           
             
         }
         
@@ -253,9 +236,21 @@ class VCChat: JSQMessagesViewController {
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleGreen())
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
+    private func addMessage(withId id: String, name: String, text: String, messageId: String, extra: String?) {
+        
+        if id == obiID, let extra = extra {
+            
+            let obicell = ObiPollingCell(text: text, extra: extra)
+            if let message = JSQMessage(senderId: id, displayName: name, media: obicell){
+                obicell.delegate = self
+                messages.append((message,messageId))
+            }
+            
+           return
+        }
+        
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
-            messages.append(message)
+            messages.append((message,messageId))
             
         }
     }
@@ -272,25 +267,82 @@ class VCChat: JSQMessagesViewController {
 
 }
 
+
+extension VCChat : ObiPollingCellDelegate {
+    
+    func didLaterButtonPressed() {
+        
+    }
+    
+    
+    func didYesButtonPressed(extra: String) {
+        
+        NSLog("Sender ID: \(senderId!)")
+        ApiManager.manager.sendMoneyToPoolServiceCall(userId: senderId!, amount: extra, completion: { (result, error) in
+            
+            if let data = result as? [String:Any], let success = data["success"] as? String {
+                
+                
+                
+                DispatchQueue.main.async {
+                    //self.havuzBalance.text = balance
+                }
+                
+            } else {
+                
+                
+                
+            }
+            
+            
+        })
+        
+    }
+    
+    func didNoButtonPressed() {
+        
+    }
+    
+}
+
 extension VCChat : PushHandlerDelegate {
     
-    func didReceiveNewObiMessage(message: JSQMessage, with: String?) {
-//        messages.append(message)
-//        self.finishReceivingMessage()
+    func didReceiveNewObiMessage(message: JSQMessage, pushId: String, params: String?) {
+
+        var extra = ""
+        if params != nil {
+            extra = params!
+        }
         
-        let itemRef = messageRef.childByAutoId() // 1
+
         
-        let messageItem = [ // 2
-            "senderId": obiID,
-            "senderName": message.senderDisplayName!,
-            "text": message.text
-            ]
+        let query = messageRef.queryOrdered(byChild: "messageId").queryEqual(toValue: pushId)
+        query.observe(DataEventType.value) { (snapshot) in
+            
+            if (snapshot.childrenCount > 0 ){
+                //this message is already sent
+            }else{
+                
+                let itemRef = self.messageRef.childByAutoId() // 1
+                
+                let messageItem = [ // 2
+                    "senderId": obiID,
+                    "senderName": message.senderDisplayName!,
+                    "text": message.text,
+                    "messageId": pushId,
+                    "extra":extra
+                ]
+                
+                itemRef.setValue(messageItem) // 3
+                
+                self.finishSendingMessage() // 5
+
+                
+            }
+            
+        }
         
-        itemRef.setValue(messageItem) // 3
         
-        finishSendingMessage() // 5
-        
-        lastReceivedObiData = with
         
     }
     
