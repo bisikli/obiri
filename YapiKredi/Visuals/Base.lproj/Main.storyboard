@@ -10,6 +10,12 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica</string>
+            <string>Helvetica-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Chat-->
         <scene sceneID="tne-QT-ifu">
@@ -69,7 +75,46 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xE-ci-1qd">
                                 <rect key="frame" x="0.0" y="64" width="375" height="126.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucH-rA-ci3">
+                                        <rect key="frame" x="20" y="10" width="335" height="106.5"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="S9A-1w-rY7">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="106.5"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNt-VE-T8z">
+                                                <rect key="frame" x="299" y="60" width="16" height="16.5"/>
+                                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3c-Ja-sBA">
+                                                <rect key="frame" x="226.5" y="47" width="62.5" height="32.5"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="kNt-VE-T8z" secondAttribute="trailing" constant="20" id="77o-pa-GVW"/>
+                                            <constraint firstItem="kNt-VE-T8z" firstAttribute="baseline" secondItem="j3c-Ja-sBA" secondAttribute="baseline" id="7mH-8t-r0C"/>
+                                            <constraint firstAttribute="bottom" secondItem="S9A-1w-rY7" secondAttribute="bottom" id="B5i-MB-DFk"/>
+                                            <constraint firstItem="S9A-1w-rY7" firstAttribute="top" secondItem="ucH-rA-ci3" secondAttribute="top" id="O9D-ER-VDB"/>
+                                            <constraint firstAttribute="trailing" secondItem="S9A-1w-rY7" secondAttribute="trailing" id="PaG-A1-37D"/>
+                                            <constraint firstItem="kNt-VE-T8z" firstAttribute="leading" secondItem="j3c-Ja-sBA" secondAttribute="trailing" constant="10" id="gSi-Bn-vjs"/>
+                                            <constraint firstAttribute="bottom" secondItem="kNt-VE-T8z" secondAttribute="bottom" constant="30" id="u54-HL-Dwu"/>
+                                            <constraint firstItem="S9A-1w-rY7" firstAttribute="leading" secondItem="ucH-rA-ci3" secondAttribute="leading" id="vUV-Xc-hJ7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ucH-rA-ci3" firstAttribute="leading" secondItem="0xE-ci-1qd" secondAttribute="leading" constant="20" id="9JZ-rv-0Jh"/>
+                                    <constraint firstItem="ucH-rA-ci3" firstAttribute="top" secondItem="0xE-ci-1qd" secondAttribute="top" constant="10" id="RkI-9G-HtE"/>
+                                    <constraint firstAttribute="trailing" secondItem="ucH-rA-ci3" secondAttribute="trailing" constant="20" id="gsB-0u-Y4D"/>
+                                    <constraint firstAttribute="bottom" secondItem="ucH-rA-ci3" secondAttribute="bottom" constant="10" id="kTD-ea-nV2"/>
+                                </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLF-cf-GpB">
                                 <rect key="frame" x="0.0" y="190.5" width="375" height="476.5"/>
@@ -93,6 +138,7 @@
                     </view>
                     <connections>
                         <outlet property="container" destination="0xE-ci-1qd" id="rX5-rp-nHG"/>
+                        <outlet property="havuzBalance" destination="j3c-Ja-sBA" id="Vm8-Ty-siw"/>
                         <outlet property="vcContainer" destination="qLF-cf-GpB" id="Xhg-gH-YVO"/>
                     </connections>
                 </viewController>
@@ -134,4 +180,7 @@
             <point key="canvasLocation" x="-398" y="100"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wallet" width="668" height="236"/>
+    </resources>
 </document>

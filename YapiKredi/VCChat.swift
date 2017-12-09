@@ -216,8 +216,27 @@ class VCChat: JSQMessagesViewController {
         if message.senderId == obiID, let obiData = lastReceivedObiData {
             NSLog("Pressed on OBI MESSAGE!!")
             
-            let amount = obiData
-            //
+            
+            NSLog("Sender ID: \(senderId)")
+            ApiManager.manager.sendMoneyToPoolServiceCall(userId: senderId!, amount: obiData, completion: { (result, error) in
+                
+                if let data = result as? [String:Any], let success = data["success"] as? String {
+                    
+                    self.lastReceivedObiData = nil
+                    
+                    DispatchQueue.main.async {
+                        //self.havuzBalance.text = balance
+                    }
+                    
+                } else {
+                    
+                    
+                    
+                }
+                
+                
+            })
+            
         }
         
     }

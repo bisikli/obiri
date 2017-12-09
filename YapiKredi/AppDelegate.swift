@@ -48,9 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                                               name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         
         
-        if (Messaging.messaging().fcmToken != nil) {
-            NSLog("FCM token: \(Messaging.messaging().fcmToken!)")
-        }
+       
         
         guard (Auth.auth().currentUser != nil) else {
             
@@ -67,7 +65,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        NSLog("USER ID: \(Auth.auth().currentUser?.uid)")
+        if let userId = Auth.auth().currentUser?.uid, let token = Messaging.messaging().fcmToken {
+            
+            NSLog("FCM token: \(token)")
+            NSLog("USER ID: \(userId)")
+            
+            
+            
+        }
+        
+        
+        
         
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+10) {
 //

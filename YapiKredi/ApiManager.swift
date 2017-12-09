@@ -9,14 +9,22 @@
 import UIKit
 import AFNetworking
 
-class ApiManager: NSObject {
+let initService                 = "http://10.0.0.144:8000/init/"
+let sendMoneyToPoolService      = "http://10.0.0.144:8000/sendtopool/"
+let sendMoneyFromPoolService    = "http://10.0.0.144:8000/getfrompool/"
+let getPoolBalanceService       = "http://10.0.0.144:8000/poolbalance/"
+let getCustomerBalanceService   = "http://10.0.0.144:8000/getbalance/"
 
+class ApiManager: NSObject {
     
-    func downloader(address: String, params: NSDictionary, completion: @escaping (_ result:Any?, _ error: Error?)-> Void){
+    static let manager = ApiManager()
+    
+    func post(address: String, params: NSDictionary, completion: @escaping (_ result:Any?, _ error: Error?)-> Void){
         
-        
-        
+
         let manager = AFHTTPSessionManager()
+        
+        manager.requestSerializer = AFJSONRequestSerializer()
         
         manager.post(address, parameters: params, progress: { (progress) in
             //mmaLogger(string:"Request progress: \(progress)")
@@ -24,6 +32,56 @@ class ApiManager: NSObject {
         
             completion(responseObject, nil)
         
+        }) { (operation, error) in
+            
+            completion(nil, error)
+        }
+        
+        
+    }
+    
+    func initServiceCall(userId: String, token: String, completion: @escaping (Any?, Error?) -> Void){
+        
+        let dic = NSMutableDictionary()
+        dic.setObject(userId, forKey: "clientID" as NSCopying)
+        dic.setObject(token, forKey: "pushToken" as NSCopying)
+        
+        self.post(address: initService, params: dic, completion: completion)
+        
+    }
+    
+    func sendMoneyToPoolServiceCall(userId: String, amount: String, completion: @escaping (Any?, Error?) -> Void){
+        
+        let dic = NSMutableDictionary()
+        dic.setObject(userId, forKey: "clientID" as NSCopying)
+        dic.setObject(amount, forKey: "amount" as NSCopying)
+        
+        self.post(address: sendMoneyToPoolService, params: dic, completion: completion)
+        
+    }
+    
+    func sendMoneyFromPoolServiceCall(userId: String, amount: String, completion: @escaping (Any?, Error?) -> Void){
+        
+        let dic = NSMutableDictionary()
+        dic.setObject(userId, forKey: "clientID" as NSCopying)
+        dic.setObject(amount, forKey: "amount" as NSCopying)
+        
+        self.post(address: sendMoneyFromPoolService, params: dic, completion: completion)
+        
+    }
+    
+    func getPoolBalanceServiceCall(completion: @escaping (_ result:Any?, _ error: Error?)-> Void) {
+        
+        let manager = AFHTTPSessionManager()
+        
+        manager.requestSerializer = AFJSONRequestSerializer()
+        
+        manager.get(getPoolBalanceService, parameters: [], progress: { (progress) in
+            
+        }, success: { (operation, responseObject) in
+            
+            completion(responseObject, nil)
+            
         }) { (operation, error) in
             
             completion(nil, error)

@@ -14,6 +14,8 @@ class VCChatContainer: UIViewController {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var vcContainer: UIView!
     
+    @IBOutlet weak var havuzBalance: UILabel!
+    
     var senderDisplayName: String?
     var channel : Channel?
     var channelRef: DatabaseReference?
@@ -23,7 +25,38 @@ class VCChatContainer: UIViewController {
         
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignResponder)))
         
+        pollPoolBalance()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func pollPoolBalance(){
+        
+        ApiManager.manager.getPoolBalanceServiceCall { (result, error) in
+            
+            if(error != nil){
+                
+            }else{
+                
+                if let data = result as? [String:Any], let balance = data["balance"] as? String {
+                    
+                    DispatchQueue.main.async {
+                        self.havuzBalance.text = balance
+                    }
+                    
+                }
+                //success , balance
+                
+            }
+            
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+            
+            self.pollPoolBalance()
+            
+        }
+        
     }
 
     @objc func resignResponder(){
