@@ -11,7 +11,7 @@ import UserNotifications
 import JSQMessagesViewController
 
 public protocol PushHandlerDelegate : NSObjectProtocol {
-    func didReceiveNewObiMessage(message: JSQMessage)
+    func didReceiveNewObiMessage(message: JSQMessage, with params: String?)
 }
 
 class PushHandler: NSObject {
@@ -22,30 +22,39 @@ class PushHandler: NSObject {
     
     func receivePush(notif: UNNotification ){
         
-        guard let params = notif.request.content.userInfo["obiData"] as? [String:Any] else {
+        let params = notif.request.content.userInfo
+        
+        guard let isObiData = params["gcm.notification.obidata"] as? String else {
             return
         }
         
-        
-        
-        
-    }
-    
-    func addTestMessage(withId id: String, name: String, text: String) {
-        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+        if let id = params["gcm.notification.id"] as? String, let message = params["gcm.notification.message"] as? String, let name = params["gcm.notification.name"] as? String {
             
-            if let uwDelegate = delegate {
-                uwDelegate.didReceiveNewObiMessage(message: message)
-            }
+            
+            
+            addMessage(withId: id, name: name, text: message, params: params["gcm.notification.amount"] as? String)
             
         }
+        
+        
+        
     }
     
-    private func addMessage(withId id: String, name: String, text: String) {
+//    func addTestMessage(withId id: String, name: String, text: String) {
+//        if let message = JSQMessage(senderId: id, displayName: name, text: text) {
+//
+//            if let uwDelegate = delegate {
+//                uwDelegate.didReceiveNewObiMessage(message: message)
+//            }
+//
+//        }
+//    }
+    
+    private func addMessage(withId id: String, name: String, text: String, params: String?) {
         if let message = JSQMessage(senderId: id, displayName: name, text: text) {
             
             if let uwDelegate = delegate {
-                uwDelegate.didReceiveNewObiMessage(message: message)
+                uwDelegate.didReceiveNewObiMessage(message: message, with: params)
             }
             
         }

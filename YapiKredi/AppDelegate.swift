@@ -70,9 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("USER ID: \(Auth.auth().currentUser?.uid)")
         
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+10) {
-//            
+//
 //            PushHandler.shared.addTestMessage(withId: obiID, name: "Obi", text: "Obi says hello!")
-//            
+//
 //        }
         
         return true

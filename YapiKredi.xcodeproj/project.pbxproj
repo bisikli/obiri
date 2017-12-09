@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A04F6972F399F95A4E32E115 /* Pods_YapiKredi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0454CFB0033C53E66B0AF19 /* Pods_YapiKredi.framework */; };
 		C6097EFA1FDAE86000A27995 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6097EF91FDAE86000A27995 /* AppDelegate.swift */; };
-		C6097EFC1FDAE86000A27995 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6097EFB1FDAE86000A27995 /* ViewController.swift */; };
 		C6097EFF1FDAE86000A27995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6097EFD1FDAE86000A27995 /* Main.storyboard */; };
 		C6097F011FDAE86000A27995 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6097F001FDAE86000A27995 /* Assets.xcassets */; };
 		C6097F041FDAE86000A27995 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6097F021FDAE86000A27995 /* LaunchScreen.storyboard */; };
@@ -29,7 +28,6 @@
 		8395EF8A1BEEF19368B9485C /* Pods-YapiKredi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapiKredi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YapiKredi/Pods-YapiKredi.debug.xcconfig"; sourceTree = "<group>"; };
 		C6097EF61FDAE86000A27995 /* YapiKredi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YapiKredi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6097EF91FDAE86000A27995 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C6097EFB1FDAE86000A27995 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C6097EFE1FDAE86000A27995 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C6097F001FDAE86000A27995 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6097F031FDAE86000A27995 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -94,16 +92,15 @@
 				C6097EF91FDAE86000A27995 /* AppDelegate.swift */,
 				C6097F0F1FDB1CC600A27995 /* AppDelegateNotification.swift */,
 				C6097F0B1FDB147B00A27995 /* ApiManager.swift */,
+				C65CA3781FDBBB5800F5E1E4 /* PushHandler.swift */,
 				C65CA3701FDB569000F5E1E4 /* Utilities.swift */,
 				C65CA36D1FDB557D00F5E1E4 /* Visuals */,
-				C6097EFB1FDAE86000A27995 /* ViewController.swift */,
 				C6097F001FDAE86000A27995 /* Assets.xcassets */,
 				C6097F051FDAE86000A27995 /* Info.plist */,
 				C65CA3741FDB5BDB00F5E1E4 /* GoogleService-Info.plist */,
 				C65CA36E1FDB55E900F5E1E4 /* VCChat.swift */,
 				C65CA3721FDB581F00F5E1E4 /* VCChannelList.swift */,
 				C65CA3761FDB881200F5E1E4 /* VCChatContainer.swift */,
-				C65CA3781FDBBB5800F5E1E4 /* PushHandler.swift */,
 			);
 			path = YapiKredi;
 			sourceTree = "<group>";
@@ -264,7 +261,6 @@
 				C65CA36F1FDB55E900F5E1E4 /* VCChat.swift in Sources */,
 				C65CA36A1FDB515000F5E1E4 /* VCFirebaseSignIn.swift in Sources */,
 				C65CA3711FDB569000F5E1E4 /* Utilities.swift in Sources */,
-				C6097EFC1FDAE86000A27995 /* ViewController.swift in Sources */,
 				C65CA3791FDBBB5800F5E1E4 /* PushHandler.swift in Sources */,
 				C65CA3731FDB581F00F5E1E4 /* VCChannelList.swift in Sources */,
 				C6097F0C1FDB147B00A27995 /* ApiManager.swift in Sources */,
