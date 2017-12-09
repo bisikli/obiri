@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import UserNotifications
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -50,6 +52,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("FCM token: \(Messaging.messaging().fcmToken!)")
         }
         
+        guard (Auth.auth().currentUser != nil) else {
+            
+            let authUI = FUIAuth.defaultAuthUI()
+            authUI?.delegate = self
+            let providers: [FUIAuthProvider] = [
+                FUIGoogleAuth()
+            ]
+            authUI?.providers = providers
+            
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController = authUI?.authViewController()
+            return true
+            
+        }
+        
         
         
         
@@ -81,5 +98,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: FUIAuthDelegate {
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle:Bundle.main)
+        guard let navigationController: UINavigationController =
+            storyboard.instantiateViewController(withIdentifier: "navigation") as? UINavigationController else {
+            return
+        }
+        
+        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController = navigationController
+    }
+    
+    func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
+        
+        
+        return VCFirebaseSignIn(nibName: "VCFirebaseSignIn",
+                                bundle: Bundle.main,
+                                authUI: authUI)
+        
+    }
+    
+    
+    
+    
+}
 
 
