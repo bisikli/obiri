@@ -10,6 +10,8 @@ import FirebaseStorage
 
 let storageRef = Storage.storage().reference()
 
+let obiID : String = "obiID"
+
 internal class Channel {
     internal let id: String
     internal let name: String

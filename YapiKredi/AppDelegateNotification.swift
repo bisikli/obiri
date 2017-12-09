@@ -38,7 +38,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         
-        
+        PushHandler.shared.receivePush(notif: notification)
         
         completionHandler([.alert,.sound])
         

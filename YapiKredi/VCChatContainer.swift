@@ -21,9 +21,21 @@ class VCChatContainer: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignResponder)))
+        
         // Do any additional setup after loading the view.
     }
 
+    @objc func resignResponder(){
+        
+        if let chatVC = self.childViewControllers.last as? VCChat {
+            
+            chatVC.view.endEditing(true)
+            
+        }
+    
+    
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

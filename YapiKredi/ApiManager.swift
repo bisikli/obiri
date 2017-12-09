@@ -18,8 +18,6 @@ class ApiManager: NSObject {
         
         let manager = AFHTTPSessionManager()
         
-        
-        
         manager.post(address, parameters: params, progress: { (progress) in
             //mmaLogger(string:"Request progress: \(progress)")
         }, success: { (operation, responseObject) in
