@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        NSLog("USER ID: \(Auth.auth().currentUser?.uid)")
         
         
         

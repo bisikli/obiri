@@ -21,7 +21,7 @@ class VCChannelList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        senderDisplayName = "Bilgehan"
+        senderDisplayName = Auth.auth().currentUser?.displayName
   
         observeChannels()
         

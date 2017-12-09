@@ -86,18 +86,17 @@
 		C6097EF81FDAE86000A27995 /* YapiKredi */ = {
 			isa = PBXGroup;
 			children = (
-				C65CA3691FDB515000F5E1E4 /* VCFirebaseSignIn.swift */,
 				C6097F111FDB20F100A27995 /* YapiKredi.entitlements */,
 				C6097EF91FDAE86000A27995 /* AppDelegate.swift */,
+				C6097F0F1FDB1CC600A27995 /* AppDelegateNotification.swift */,
+				C6097F0B1FDB147B00A27995 /* ApiManager.swift */,
+				C65CA3701FDB569000F5E1E4 /* Utilities.swift */,
 				C65CA36D1FDB557D00F5E1E4 /* Visuals */,
 				C6097EFB1FDAE86000A27995 /* ViewController.swift */,
 				C6097F001FDAE86000A27995 /* Assets.xcassets */,
 				C6097F051FDAE86000A27995 /* Info.plist */,
 				C65CA3741FDB5BDB00F5E1E4 /* GoogleService-Info.plist */,
-				C6097F0B1FDB147B00A27995 /* ApiManager.swift */,
-				C6097F0F1FDB1CC600A27995 /* AppDelegateNotification.swift */,
 				C65CA36E1FDB55E900F5E1E4 /* VCChat.swift */,
-				C65CA3701FDB569000F5E1E4 /* Utilities.swift */,
 				C65CA3721FDB581F00F5E1E4 /* VCChannelList.swift */,
 			);
 			path = YapiKredi;
@@ -106,6 +105,7 @@
 		C65CA36D1FDB557D00F5E1E4 /* Visuals */ = {
 			isa = PBXGroup;
 			children = (
+				C65CA3691FDB515000F5E1E4 /* VCFirebaseSignIn.swift */,
 				C6097EFD1FDAE86000A27995 /* Main.storyboard */,
 				C6097F021FDAE86000A27995 /* LaunchScreen.storyboard */,
 				C65CA36B1FDB52B300F5E1E4 /* VCFirebaseSignIn.xib */,

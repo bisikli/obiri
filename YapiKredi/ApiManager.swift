@@ -14,6 +14,8 @@ class ApiManager: NSObject {
     
     func downloader(address: String, params: NSDictionary, completion: @escaping (_ result:Any?, _ error: Error?)-> Void){
         
+        
+        
         let manager = AFHTTPSessionManager()
         
         
