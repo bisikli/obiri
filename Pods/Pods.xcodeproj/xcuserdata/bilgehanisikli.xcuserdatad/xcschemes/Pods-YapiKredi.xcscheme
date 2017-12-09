@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63C878126A9B7436D9BD81F72AC25DE4"
+               BlueprintIdentifier = "F6625F4002BCA345BC525F11046E5283"
                BuildableName = "Pods_YapiKredi.framework"
                BlueprintName = "Pods-YapiKredi"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63C878126A9B7436D9BD81F72AC25DE4"
+            BlueprintIdentifier = "F6625F4002BCA345BC525F11046E5283"
             BuildableName = "Pods_YapiKredi.framework"
             BlueprintName = "Pods-YapiKredi"
             ReferencedContainer = "container:Pods.xcodeproj">

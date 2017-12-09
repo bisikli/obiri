@@ -67,7 +67,21 @@ class VCChat: JSQMessagesViewController {
 
         finishSendingMessage() // 5
         
-        
+        if(text.contains("@obiri")){
+            
+            var kirp = text.substring(from: 7)
+            
+            kirp = kirp.substring(to: kirp.index(of: " ")!)
+            
+            self.view.showLoader()
+            
+            ApiManager.manager.requestMoneyServiceCall(userId: senderId, amount: kirp, completion: { (response, error) in
+                
+                self.view.hideLoader()
+                
+            })
+            
+        }
         
     }
     
@@ -277,9 +291,11 @@ extension VCChat : ObiPollingCellDelegate {
     
     func didYesButtonPressed(extra: String) {
         
+        self.view.showLoader()
         NSLog("Sender ID: \(senderId!)")
         ApiManager.manager.sendMoneyToPoolServiceCall(userId: senderId!, amount: extra, completion: { (result, error) in
             
+            self.view.hideLoader()
             if let data = result as? [String:Any], let success = data["success"] as? String {
                 
                 
@@ -322,6 +338,8 @@ extension VCChat : PushHandlerDelegate {
             if (snapshot.childrenCount > 0 ){
                 //this message is already sent
             }else{
+                
+                NSLog("NEW PUSH ID: \(pushId)")
                 
                 let itemRef = self.messageRef.childByAutoId() // 1
                 

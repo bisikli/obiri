@@ -9,11 +9,12 @@
 import UIKit
 import AFNetworking
 
-let initService                 = "http://10.0.0.144:8000/init/"
-let sendMoneyToPoolService      = "http://10.0.0.144:8000/sendtopool/"
-let sendMoneyFromPoolService    = "http://10.0.0.144:8000/getfrompool/"
-let getPoolBalanceService       = "http://10.0.0.144:8000/poolbalance/"
-let getCustomerBalanceService   = "http://10.0.0.144:8000/getbalance/"
+let initService                 = "http://10.0.1.37:8000/init/"
+let sendMoneyToPoolService      = "http://10.0.1.37:8000/sendtopool/"
+let sendMoneyFromPoolService    = "http://10.0.1.37:8000/getfrompool/"
+let getPoolBalanceService       = "http://10.0.1.37:8000/poolbalance/"
+let getCustomerBalanceService   = "http://10.0.1.37:8000/getbalance/"
+let requestMoneyService         = "http://10.0.1.37:8000/requestmoney/"
 
 class ApiManager: NSObject {
     
@@ -38,6 +39,16 @@ class ApiManager: NSObject {
         }
         
         
+    }
+    
+    
+    func requestMoneyServiceCall(userId: String, amount: String, completion: @escaping (Any?, Error?) -> Void) {
+        
+        let dic = NSMutableDictionary()
+        dic.setObject(userId, forKey: "clientID" as NSCopying)
+        dic.setObject(Int(amount)!, forKey: "amount" as NSCopying)
+        
+        self.post(address: requestMoneyService, params: dic, completion: completion)
     }
     
     func initServiceCall(userId: String, token: String, completion: @escaping (Any?, Error?) -> Void){

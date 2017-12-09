@@ -25,8 +25,12 @@ target 'YapiKredi' do
     pod 'SCLAlertView'
     
     pod 'JSQMessagesViewController'
-#pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
+
     
     pod 'AFNetworking', '~> 3.0'
+    
+    pod 'GradientCircularProgress', :git => 'https://github.com/keygx/GradientCircularProgress'
+    
+    
 
 end

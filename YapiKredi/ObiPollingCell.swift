@@ -80,9 +80,10 @@ class ObiPollingCell: JSQMediaItem {
             let max_Width = 0.7 * UIScreen.main.bounds.width
             
             textView.frame = CGRect(x:10, y: 10, width: max_Width, height: 0)
-            textView.font = UIFont(name: "Helvetica", size: 17.0)
+            textView.font = UIFont(name: "Helvetica", size: 13.0)
             textView.backgroundColor = UIColor.clear
             textView.sizeToFit()
+            textView.numberOfLines = 0
      
             let textView_Width =  min(max_Width,max(textView.frame.size.width, 45))
             
@@ -132,25 +133,42 @@ class ObiPollingCell: JSQMediaItem {
         }
     
     @objc func yesSelected(){
-        
+        self.yesButton.backgroundColor = .white
+        self.yesButton.setImage(#imageLiteral(resourceName: "check"), for: UIControlState.normal)
+        self.yesButton.imageView?.contentMode = .scaleAspectFit
+        self.yesButton.isUserInteractionEnabled = false
         if let del = self.delegate {
             del.didYesButtonPressed(extra: self.extra)
         }
         
+        self.noButton.backgroundColor = .gray
+        self.laterButton.backgroundColor = .gray
+        
     }
     
     @objc func noSelected(){
-        
+        self.noButton.backgroundColor = .white
+        self.noButton.setImage(#imageLiteral(resourceName: "check"), for: UIControlState.normal)
+        self.noButton.imageView?.contentMode = .scaleAspectFit
+        self.noButton.isUserInteractionEnabled = false
         if let del = self.delegate {
             del.didNoButtonPressed()
         }
-        
+        self.yesButton.backgroundColor = .gray
+        self.laterButton.backgroundColor = .gray
     }
     
     @objc func laterSelected(){
-        
+        self.laterButton.backgroundColor = .white
+        self.laterButton.setImage(#imageLiteral(resourceName: "check"), for: UIControlState.normal)
+        self.laterButton.imageView?.contentMode = .scaleAspectFit
+        self.laterButton.isUserInteractionEnabled = false
         if let del = self.delegate {
-            del.didLaterButtonPressed()        }
+            del.didLaterButtonPressed()
+            
+        }
+        self.noButton.backgroundColor = .gray
+        self.yesButton.backgroundColor = .gray
         
     }
         
