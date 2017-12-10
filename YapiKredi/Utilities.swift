@@ -123,6 +123,8 @@ extension UIView {
     
 }
 
+let obirColor = UIColor(red: 0, green: 175/155, blue: 174/155, alpha: 1.0)
+
 public struct MyStyle : StyleProperty {
     /*** style properties **********************************************************************************/
     
@@ -130,21 +132,21 @@ public struct MyStyle : StyleProperty {
     public var progressSize: CGFloat = 40
     
     // Gradient Circular
-    public var arcLineWidth: CGFloat = 5.0
+    public var arcLineWidth: CGFloat = 3.0
     public var startArcColor: UIColor = UIColor.clear
-    public var endArcColor: UIColor = .blue
-    
+    public var endArcColor: UIColor = obirColor
+    //00afae
     // Base Circular
     public var baseLineWidth: CGFloat? = 5.5
     public var baseArcColor: UIColor? = UIColor.white
     
     // Ratio
-    public var ratioLabelFont: UIFont? = UIFont(name: "Verdana-Bold", size: 8.0)
+    public var ratioLabelFont: UIFont? = UIFont(name: "Verdana-Bold", size: 5.0)
     public var ratioLabelFontColor: UIColor? = UIColor.white
     
     // Message
-    public var messageLabelFont: UIFont? = UIFont.systemFont(ofSize: 10.0)
-    public var messageLabelFontColor: UIColor? = .blue
+    public var messageLabelFont: UIFont? = UIFont.systemFont(ofSize: 5.0)
+    public var messageLabelFontColor: UIColor? = obirColor
     
     // Background
     public var backgroundStyle: BackgroundStyles = .none

@@ -14,6 +14,7 @@ class VCChannelList: UITableViewController {
     var senderDisplayName: String? // 1
     var newChannelTextField: UITextField? // 2
     private var channels: [Channel] = [] // 3
+    private var images: [String] = ["ev","apt"] // 3
     private lazy var channelRef: DatabaseReference = Database.database().reference().child("channels")
     private var channelRefHandle: DatabaseHandle?
     
@@ -21,10 +22,14 @@ class VCChannelList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Gruplar"
+        
+        self.tableView.tableFooterView = UIView()
+        
         senderDisplayName = Auth.auth().currentUser?.displayName
   
         observeChannels()
-        
+        //createChannels()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -41,12 +46,12 @@ class VCChannelList: UITableViewController {
     func createChannels() {
         let newChannelRef = channelRef.childByAutoId() // 2
         let channelItem = [ // 3
-            "name": "Tatil Grubu"
+            "name": "Ev Ahalisi"
         ]
         newChannelRef.setValue(channelItem)
         let newChannelRef2 = channelRef.childByAutoId() // 2
         let channelItem2 = [ // 3
-            "name": "Ev Ahalisi"
+            "name": "Apartman"
         ]
         newChannelRef2.setValue(channelItem2)
     }
@@ -73,6 +78,10 @@ class VCChannelList: UITableViewController {
 
     // MARK: - Table view data source
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -85,11 +94,12 @@ class VCChannelList: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as? GroupCell
 
-        cell.textLabel?.text = channels[indexPath.row].name
+        cell?.label.text = channels[indexPath.row].name
+        cell?.icon.image = UIImage(named:images[indexPath.row])
 
-        return cell
+        return cell!
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +16,9 @@
         <array key="Helvetica.ttc">
             <string>Helvetica</string>
             <string>Helvetica-Light</string>
+        </array>
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
         </array>
     </customFonts>
     <scenes>
@@ -42,13 +47,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="channelCell" id="LVe-DZ-w0K">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="channelCell" rowHeight="65" id="LVe-DZ-w0K" customClass="GroupCell" customModule="YapiKredi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LVe-DZ-w0K" id="d9O-4S-9NK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dfw-9Y-aqc">
+                                            <rect key="frame" x="21" y="16" width="43" height="43"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="dfw-9Y-aqc" secondAttribute="height" multiplier="1:1" id="aIS-tC-pqx"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tu-EB-ZDQ">
+                                            <rect key="frame" x="69" y="26.5" width="285" height="22.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                            <color key="textColor" red="0.0" green="0.68627450980392157" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dfw-9Y-aqc" firstAttribute="leading" secondItem="d9O-4S-9NK" secondAttribute="leadingMargin" constant="5" id="2f2-SI-mJE"/>
+                                        <constraint firstItem="6tu-EB-ZDQ" firstAttribute="centerY" secondItem="dfw-9Y-aqc" secondAttribute="centerY" id="TZt-p5-5ZA"/>
+                                        <constraint firstItem="6tu-EB-ZDQ" firstAttribute="leading" secondItem="dfw-9Y-aqc" secondAttribute="trailing" constant="5" id="aZV-n7-T6Z"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="6tu-EB-ZDQ" secondAttribute="trailing" constant="5" id="deY-77-NkS"/>
+                                        <constraint firstItem="dfw-9Y-aqc" firstAttribute="top" secondItem="d9O-4S-9NK" secondAttribute="topMargin" constant="5" id="gNA-m4-0bf"/>
+                                        <constraint firstItem="dfw-9Y-aqc" firstAttribute="bottom" secondItem="d9O-4S-9NK" secondAttribute="bottomMargin" constant="5" id="xMD-5G-KIM"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="icon" destination="dfw-9Y-aqc" id="u7E-iG-Prq"/>
+                                    <outlet property="label" destination="6tu-EB-ZDQ" id="nmq-fu-k3w"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

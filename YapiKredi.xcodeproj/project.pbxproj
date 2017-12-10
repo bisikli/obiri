@@ -23,6 +23,7 @@
 		C65CA3771FDB881200F5E1E4 /* VCChatContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65CA3761FDB881200F5E1E4 /* VCChatContainer.swift */; };
 		C65CA3791FDBBB5800F5E1E4 /* PushHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65CA3781FDBBB5800F5E1E4 /* PushHandler.swift */; };
 		C65CA37C1FDC29C300F5E1E4 /* ObiPollingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65CA37B1FDC29C300F5E1E4 /* ObiPollingCell.swift */; };
+		C6BC32EA1FDCE3470056D14A /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BC32E91FDCE3470056D14A /* GroupCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		C65CA3761FDB881200F5E1E4 /* VCChatContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCChatContainer.swift; sourceTree = "<group>"; };
 		C65CA3781FDBBB5800F5E1E4 /* PushHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHandler.swift; sourceTree = "<group>"; };
 		C65CA37B1FDC29C300F5E1E4 /* ObiPollingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObiPollingCell.swift; sourceTree = "<group>"; };
+		C6BC32E91FDCE3470056D14A /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		C87E8272B4833E0E5FC1BD61 /* Pods-YapiKredi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YapiKredi.release.xcconfig"; path = "Pods/Target Support Files/Pods-YapiKredi/Pods-YapiKredi.release.xcconfig"; sourceTree = "<group>"; };
 		E0454CFB0033C53E66B0AF19 /* Pods_YapiKredi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YapiKredi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -115,6 +117,7 @@
 				C6097EFD1FDAE86000A27995 /* Main.storyboard */,
 				C6097F021FDAE86000A27995 /* LaunchScreen.storyboard */,
 				C65CA36B1FDB52B300F5E1E4 /* VCFirebaseSignIn.xib */,
+				C6BC32E91FDCE3470056D14A /* GroupCell.swift */,
 			);
 			path = Visuals;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				C65CA36F1FDB55E900F5E1E4 /* VCChat.swift in Sources */,
 				C65CA36A1FDB515000F5E1E4 /* VCFirebaseSignIn.swift in Sources */,
+				C6BC32EA1FDCE3470056D14A /* GroupCell.swift in Sources */,
 				C65CA3711FDB569000F5E1E4 /* Utilities.swift in Sources */,
 				C65CA3791FDBBB5800F5E1E4 /* PushHandler.swift in Sources */,
 				C65CA3731FDB581F00F5E1E4 /* VCChannelList.swift in Sources */,
