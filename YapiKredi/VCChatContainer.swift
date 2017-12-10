@@ -17,8 +17,14 @@ class VCChatContainer: UIViewController {
     @IBOutlet weak var havuzBalance: UILabel!
     
     var senderDisplayName: String?
-    var channel : Channel?
+    var channel: Channel? {
+        didSet {
+            title = channel?.name
+        }
+    }
     var channelRef: DatabaseReference?
+    
+    var isPollingActive = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +32,21 @@ class VCChatContainer: UIViewController {
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignResponder)))
         
         pollPoolBalance()
-        
+        isPollingActive = false
         // Do any additional setup after loading the view.
     }
     
     func pollPoolBalance(){
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+            
+            self.pollPoolBalance()
+            
+        }
+        
+//        if(!isPollingActive){
+//            return
+//        }
         
         ApiManager.manager.getPoolBalanceServiceCall { (result, error) in
             
@@ -48,12 +64,6 @@ class VCChatContainer: UIViewController {
                 //success , balance
                 
             }
-            
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
-            
-            self.pollPoolBalance()
             
         }
         
@@ -79,7 +89,7 @@ class VCChatContainer: UIViewController {
             chatVc.senderDisplayName = senderDisplayName
             chatVc.channel           = channel
             chatVc.channelRef        = channelRef
-    
+            chatVc.container         = self
         
     }
 

@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import JSQMessagesViewController
+import Firebase
 
 enum ObiButtonType {
     case YES
@@ -82,9 +83,10 @@ class ObiPollingCell: JSQMediaItem {
             textView.frame = CGRect(x:10, y: 10, width: max_Width, height: 0)
             textView.font = UIFont(name: "Helvetica", size: 13.0)
             textView.backgroundColor = UIColor.clear
-            textView.sizeToFit()
+            
             textView.numberOfLines = 0
-     
+            textView.lineBreakMode = NSLineBreakMode.byWordWrapping
+            textView.sizeToFit()
             let textView_Width =  min(max_Width,max(textView.frame.size.width, 45))
             
             size =  CGSize(width: textView_Width + 30, height: textView.frame.size.height + 60)
@@ -144,6 +146,15 @@ class ObiPollingCell: JSQMediaItem {
         self.noButton.backgroundColor = .gray
         self.laterButton.backgroundColor = .gray
         
+        if let userId = Auth.auth().currentUser?.uid {
+            ApiManager.manager.pushDecisionServiceCall(userId: userId, decision: yesDecision, completion: { (result, b) in
+                if let data = result as? [String:Any], let success = data["success"] as? String {
+                    NSLog("REPORTING RESULT: \(success)")
+                }
+            })
+        }
+       
+        
     }
     
     @objc func noSelected(){
@@ -156,6 +167,12 @@ class ObiPollingCell: JSQMediaItem {
         }
         self.yesButton.backgroundColor = .gray
         self.laterButton.backgroundColor = .gray
+        
+        if let userId = Auth.auth().currentUser?.uid {
+            ApiManager.manager.pushDecisionServiceCall(userId: userId, decision: noDecision, completion: { (a, b) in
+                
+            })
+        }
     }
     
     @objc func laterSelected(){
@@ -169,6 +186,12 @@ class ObiPollingCell: JSQMediaItem {
         }
         self.noButton.backgroundColor = .gray
         self.yesButton.backgroundColor = .gray
+        
+        if let userId = Auth.auth().currentUser?.uid {
+            ApiManager.manager.pushDecisionServiceCall(userId: userId, decision: laterDecision, completion: { (a, b) in
+                
+            })
+        }
         
     }
         

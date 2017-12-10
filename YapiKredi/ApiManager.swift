@@ -9,12 +9,19 @@
 import UIKit
 import AFNetworking
 
-let initService                 = "http://10.0.1.37:8000/init/"
-let sendMoneyToPoolService      = "http://10.0.1.37:8000/sendtopool/"
-let sendMoneyFromPoolService    = "http://10.0.1.37:8000/getfrompool/"
-let getPoolBalanceService       = "http://10.0.1.37:8000/poolbalance/"
-let getCustomerBalanceService   = "http://10.0.1.37:8000/getbalance/"
-let requestMoneyService         = "http://10.0.1.37:8000/requestmoney/"
+let domain                      = "http://10.0.0.144:8000"
+
+let initService                 = "\(domain)/init/"
+let sendMoneyToPoolService      = "\(domain)/sendtopool/"
+let sendMoneyFromPoolService    = "\(domain)/getfrompool/"
+let getPoolBalanceService       = "\(domain)/poolbalance/"
+let getCustomerBalanceService   = "\(domain)/getbalance/"
+let requestMoneyService         = "\(domain)/requestmoney/"
+let pushDecisionService         = "\(domain)/pushdecision/"
+let getbillamountService        = "\(domain)/getbillamount/"
+let makePaymentService          = "\(domain)/makepayment/"
+
+
 
 class ApiManager: NSObject {
     
@@ -39,6 +46,24 @@ class ApiManager: NSObject {
         }
         
         
+    }
+    
+    func getBillamountServiceCall( amount: String, completion: @escaping (Any?, Error?) -> Void) {
+        
+        let dic = NSMutableDictionary()
+        dic.setObject(amount, forKey: "product" as NSCopying)
+       
+        
+        self.post(address: getbillamountService, params: dic, completion: completion)
+    }
+    
+    func pushDecisionServiceCall(userId: String, decision: String, completion: @escaping (Any?, Error?) -> Void) {
+        
+        let dic = NSMutableDictionary()
+        dic.setObject(userId, forKey: "clientID" as NSCopying)
+        dic.setObject(decision, forKey: "decision" as NSCopying)
+        
+        self.post(address: pushDecisionService, params: dic, completion: completion)
     }
     
     
@@ -100,6 +125,8 @@ class ApiManager: NSObject {
         
         
     }
+    
+   
     
     
 }

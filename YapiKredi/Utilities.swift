@@ -17,6 +17,13 @@ let bubleColor = UIColor(red: 231/255, green: 230/255, blue: 236/255, alpha: 1)
 
 let storageRef = Storage.storage().reference()
 
+let yesDecision = "yes"
+let noDecision  = "no"
+let laterDecision = "later"
+
+let elektrik = "ELEKTRİK"
+let su       = "SU"
+
 let obiID : String = "12312312"
 
 internal class Channel {
@@ -120,15 +127,15 @@ public struct MyStyle : StyleProperty {
     /*** style properties **********************************************************************************/
     
     // Progress Size
-    public var progressSize: CGFloat = 80
+    public var progressSize: CGFloat = 40
     
     // Gradient Circular
-    public var arcLineWidth: CGFloat = 9.0
+    public var arcLineWidth: CGFloat = 5.0
     public var startArcColor: UIColor = UIColor.clear
     public var endArcColor: UIColor = .blue
     
     // Base Circular
-    public var baseLineWidth: CGFloat? = 9.5
+    public var baseLineWidth: CGFloat? = 5.5
     public var baseArcColor: UIColor? = UIColor.white
     
     // Ratio

@@ -31,6 +31,10 @@ class PushHandler: NSObject {
         if let id = params["gcm.notification.id"] as? String, let message = params["gcm.notification.message"] as? String, let name = params["gcm.notification.name"] as? String {
             
             
+//            if let amount = params["gcm.notification.amount"] as? String {
+//
+//                return
+//            }
             
             addMessage(withId: id, name: name, text: message, pushId: obiKey, params: params["gcm.notification.amount"] as? String)
             

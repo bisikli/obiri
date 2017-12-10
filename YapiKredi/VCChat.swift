@@ -29,6 +29,7 @@ class VCChat: JSQMessagesViewController {
         return bubbleImageFactory!.incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
     }()
 
+    var container : VCChatContainer?
     var channelRef: DatabaseReference?
     var channel: Channel? {
         didSet {
@@ -67,9 +68,38 @@ class VCChat: JSQMessagesViewController {
 
         finishSendingMessage() // 5
         
+        view.endEditing(true)
+        
         if(text.contains("@obiri")){
             
             var kirp = text.substring(from: 7)
+            
+            if(kirp.contains("öde")){
+                self.view.showLoader()
+                ApiManager.manager.post(address: makePaymentService, params: [:], completion: { (result, error) in
+                    self.view.hideLoader()
+                })
+                
+                return
+            }
+            
+            if(kirp.contains("elektrik")) {
+                self.view.showLoader()
+                ApiManager.manager.getBillamountServiceCall(amount: elektrik, completion: { (result, error) in
+                    self.view.hideLoader()
+                })
+                
+                return
+            }
+            
+            if(kirp.contains("su ")){
+                self.view.showLoader()
+                ApiManager.manager.getBillamountServiceCall(amount: su, completion: { (result, error) in
+                    self.view.hideLoader()
+                })
+
+                return
+            }
             
             kirp = kirp.substring(to: kirp.index(of: " ")!)
             
@@ -230,10 +260,7 @@ class VCChat: JSQMessagesViewController {
         
         if message.senderId == obiID, let obiData = messages[indexPath.item].param {
             NSLog("Pressed on OBI MESSAGE!!")
-            
-            
-           
-            
+  
         }
         
     }
@@ -285,29 +312,30 @@ class VCChat: JSQMessagesViewController {
 extension VCChat : ObiPollingCellDelegate {
     
     func didLaterButtonPressed() {
-        
+        view.endEditing(true)
     }
     
     
     func didYesButtonPressed(extra: String) {
-        
+        view.endEditing(true)
         self.view.showLoader()
         NSLog("Sender ID: \(senderId!)")
+        
+        
+        
         ApiManager.manager.sendMoneyToPoolServiceCall(userId: senderId!, amount: extra, completion: { (result, error) in
             
             self.view.hideLoader()
             if let data = result as? [String:Any], let success = data["success"] as? String {
                 
-                
-                
-                DispatchQueue.main.async {
-                    //self.havuzBalance.text = balance
+                if let cont = self.container {
+                    cont.isPollingActive = true
+                    
+                   cont.pollPoolBalance()
+                    
+                    cont.isPollingActive = false
+                    
                 }
-                
-            } else {
-                
-                
-                
             }
             
             
@@ -316,7 +344,7 @@ extension VCChat : ObiPollingCellDelegate {
     }
     
     func didNoButtonPressed() {
-        
+        view.endEditing(true)
     }
     
 }
@@ -325,11 +353,6 @@ extension VCChat : PushHandlerDelegate {
     
     func didReceiveNewObiMessage(message: JSQMessage, pushId: String, params: String?) {
 
-        var extra = ""
-        if params != nil {
-            extra = params!
-        }
-        
 
         
         let query = messageRef.queryOrdered(byChild: "messageId").queryEqual(toValue: pushId)
@@ -343,13 +366,25 @@ extension VCChat : PushHandlerDelegate {
                 
                 let itemRef = self.messageRef.childByAutoId() // 1
                 
-                let messageItem = [ // 2
-                    "senderId": obiID,
-                    "senderName": message.senderDisplayName!,
-                    "text": message.text,
-                    "messageId": pushId,
-                    "extra":extra
-                ]
+                var messageItem : [String:Any]
+                
+                if params != nil {
+                    messageItem = [ // 2
+                        "senderId": obiID,
+                        "senderName": message.senderDisplayName!,
+                        "text": message.text,
+                        "messageId": pushId,
+                        "extra":params!
+                    ]
+                }
+                else{
+                    messageItem = [ // 2
+                        "senderId": obiID,
+                        "senderName": message.senderDisplayName!,
+                        "text": message.text,
+                        "messageId": pushId
+                    ]
+                }
                 
                 itemRef.setValue(messageItem) // 3
                 
